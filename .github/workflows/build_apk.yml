@@ -7,9 +7,6 @@ on:
     branches: [ "main", "master" ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   build-android-apk:
     name: Build Release APK (MOUNIX TECH HUB)
@@ -19,11 +16,33 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Unpack Full MOUNIX TECH HUB Architecture & Generate Logo Icons
-        run: |
-          python3 - << 'EOF'
-          import base64, io, tarfile
-          from pathlib import Path
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
-          b64_data = "/Td6WFoAAATm1rRGAgAhARwAAAAQz1jM5F//hX1dABcL3ASAUDIm7h19G/PyyzPs7Pg38OrWeznBvBtW"
-          EOF
+      - name: Set up Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Ensure Android Gradle Wrapper & Dependencies
+        run: |
+          flutter config --no-analytics
+          flutter create --platforms=android --org com.mounix --project-name mounix_tech_hub .
+          flutter pub get
+
+      - name: Build Release APK
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          flutter build apk --release --no-tree-shake-icons --dart-define=YOUTUBE_API_KEY="${YOUTUBE_API_KEY}"
+
+      - name: Upload MOUNIX TECH HUB APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MOUNIX-TECH-HUB-Release-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
