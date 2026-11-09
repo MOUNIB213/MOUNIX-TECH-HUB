@@ -1,0 +1,29 @@
+name: Build MOUNIX TECH HUB Android APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-android-apk:
+    name: Build Release APK (MOUNIX TECH HUB)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Unpack Full MOUNIX TECH HUB Architecture & Generate Logo Icons
+        run: |
+          python3 - << 'EOF'
+          import base64, io, tarfile
+          from pathlib import Path
+
+          b64_data = "/Td6WFoAAATm1rRGAgAhARwAAAAQz1jM5F//hX1dABcL3ASAUDIm7h19G/PyyzPs7Pg38OrWeznBvBtW"
+          EOF
