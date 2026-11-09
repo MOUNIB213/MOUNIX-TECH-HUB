@@ -1,0 +1,39 @@
+name: mounix_tech_hub
+description: "MOUNIX TECH HUB - \u062A\u0637\u0628\u064A\u0642 \u0627\u0643\u062A\u0634\u0627\u0641 \u0648\u0645\u062A\u0627\u0628\u0639\u0629 \u0627\u0644\u0641\u064A\u062F\u064A\u0648\u0647\u0627\u062A \u0627\u0644\u062A\u0642\u0646\u064A\u0629 \u0628\u0627\u0633\u062A\u062E\u062F\u0627\u0645 Flutter"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^2.5.1
+  dio: ^5.4.3+1
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  path_provider: ^2.1.3
+  shared_preferences: ^2.2.3
+  go_router: ^14.1.4
+  cached_network_image: ^3.3.1
+  flutter_local_notifications: ^17.1.2
+  workmanager: ^0.5.2
+  share_plus: ^9.0.0
+  url_launcher: ^6.3.0
+  flutter_animate: ^4.5.0
+  google_fonts: ^6.2.1
+  shimmer: ^3.0.0
+  intl: ^0.20.2
+  youtube_player_flutter: ^9.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
